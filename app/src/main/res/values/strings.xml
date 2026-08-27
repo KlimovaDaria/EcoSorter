@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">EcoSorter</string>
+    <string name="welcome_title_tv">ЭкоПатруль: Сортировка</string>
+    <string name="welcome_rule1_tv">Перед вами появится случайный предмет, который превратился в отходы
+        (например, пластиковая бутылка, огрызок яблока или старая газета),
+        и 4 мусорных контейнера внизу: ПЛАСТИК, БУМАГА, ОРГАНИКА и СТЕКЛО.</string>
+    <string name="welcome_rule2_tv">Ваша задача — за отведенное время правильно определить категорию предмета и отправить его в нужный бак.</string>
+    <string name="welcome_rule3_tv">Пример: на экране появляется «Банановая кожура». Из четырех вариантов баков вам нужно выбрать «ОРГАНИКА». Если вы нажмете на этот контейнер, ответ засчитается как правильный, на экране появится новый предмет, а шкала очистки планеты продвинется вперед!</string>
+    <string name="welcome_choose_level_tv">Выберите уровень</string>
+    <string name="welcome_easy_level_tv">Легкий</string>
+    <string name="welcome_normal_level_tv">Средний</string>
+    <string name="welcome_hard_level_tv">Тяжелый</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

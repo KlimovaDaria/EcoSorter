@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="eco_cat_grey">#93A3B1</color>
+    <color name="eco_planet_green">#83DE85</color>
+    <color name="eco_planet_blue">#D1F7FF</color>
+    <color name="eco_contour_turquoise">#4FA3A5</color>
+    <color name="eco_accent_pink">#FF6591</color>
+    <color name="eco_blush_pink">#FF9EAA</color>
+    <color name="eco_dark_contour">#748A9D</color>
 </resources>
