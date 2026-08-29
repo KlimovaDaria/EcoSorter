@@ -10,6 +10,10 @@
     <string name="welcome_easy_level_tv">Легкий</string>
     <string name="welcome_normal_level_tv">Средний</string>
     <string name="welcome_hard_level_tv">Тяжелый</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="progress_answers">Правильных ответов %d (минимум %d)</string>
+    <string name="trash_item_name_example">Банановая кожура</string>
+    <string name="plastic">ПЛАСТИК</string>
+    <string name="paper">БУМАГА</string>
+    <string name="organic">ОРГАНИКА</string>
+    <string name="glass">СТЕКЛО</string>
 </resources>

@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
     app:startDestination="@id/startScreenFragment">
 
     <fragment
         android:id="@+id/startScreenFragment"
-        android:name="com.example.ecosorter.StartScreenFragment"
-        android:label="StartScreenFragment" />
+        android:name="com.example.ecosorter.presentation.StartScreenFragment"
+        android:label="StartScreenFragment" >
+        <action
+            android:id="@+id/action_startScreenFragment_to_gameFragment"
+            app:destination="@id/gameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.example.ecosorter.presentation.GameFragment"
+        android:label="fragment_game"
+        tools:layout="@layout/fragment_game" >
+        <argument
+            android:name="level"
+            app:argType="com.example.ecosorter.domain.entity.Level" />
+    </fragment>
 </navigation>
