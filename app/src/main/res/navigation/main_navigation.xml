@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/startScreenFragment"
-        android:name="com.example.ecosorter.presentation.StartScreenFragment"
+        android:name="com.example.ecosorter.presentation.fragments.StartScreenFragment"
         android:label="StartScreenFragment" >
         <action
             android:id="@+id/action_startScreenFragment_to_gameFragment"
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
-        android:name="com.example.ecosorter.presentation.GameFragment"
+        android:name="com.example.ecosorter.presentation.fragments.GameFragment"
         android:label="fragment_game"
         tools:layout="@layout/fragment_game" >
         <argument

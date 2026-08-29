@@ -16,4 +16,5 @@
     <string name="paper">БУМАГА</string>
     <string name="organic">ОРГАНИКА</string>
     <string name="glass">СТЕКЛО</string>
+    <string name="percent_right_answers">Процент правильных ответов %d (минимум %d)</string>
 </resources>

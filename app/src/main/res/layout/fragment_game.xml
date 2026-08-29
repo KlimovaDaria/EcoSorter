@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.GameFragment">
+    tools:context=".presentation.fragments.GameFragment">
 
     <TextView
         android:id="@+id/tv_timer"
@@ -20,6 +20,19 @@
         tools:text="00:00" />
 
     <TextView
+        android:id="@+id/tv_count_questions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="36dp"
+        android:gravity="center"
+        android:textColor="@color/eco_contour_turquoise"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_timer"
+        tools:text="0" />
+
+    <TextView
         android:id="@+id/tv_trash_item"
         style="@style/TrashItemTextStyle"
         android:layout_width="160dp"
@@ -30,7 +43,7 @@
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_timer"
+        app:layout_constraintTop_toBottomOf="@+id/tv_count_questions"
         app:layout_constraintVertical_chainStyle="packed"
         tools:text="@string/trash_item_name_example" />
 
@@ -47,7 +60,8 @@
         app:layout_constraintEnd_toStartOf="@+id/container_option2"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_trash_item">
+        app:layout_constraintTop_toBottomOf="@+id/tv_trash_item"
+        android:tag="PLASTIC">
 
         <ImageView
             android:id="@+id/iv_option1"
@@ -80,7 +94,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toEndOf="@+id/container_option1"
-        app:layout_constraintTop_toBottomOf="@+id/tv_trash_item">
+        app:layout_constraintTop_toBottomOf="@+id/tv_trash_item"
+        android:tag="PAPER">
 
         <ImageView
             android:id="@+id/iv_option2"
@@ -113,7 +128,8 @@
         app:layout_constraintEnd_toStartOf="@id/container_option4"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/container_option1">
+        app:layout_constraintTop_toBottomOf="@+id/container_option1"
+        android:tag="ORGANIC">
 
         <ImageView
             android:id="@+id/iv_option3"
@@ -146,7 +162,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toEndOf="@id/container_option3"
-        app:layout_constraintTop_toBottomOf="@+id/container_option2">
+        app:layout_constraintTop_toBottomOf="@+id/container_option2"
+        android:tag="GLASS">
 
         <ImageView
             android:id="@+id/iv_option4"
@@ -174,25 +191,25 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="36dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginEnd="18dp"
         android:layout_marginBottom="9dp"
-        app:layout_constraintBottom_toTopOf="@id/progress_bar"
+        app:layout_constraintBottom_toTopOf="@id/tv_right_answers_percent"
         app:layout_constraintTop_toBottomOf="@id/container_option4"
         app:layout_constraintVertical_chainStyle="spread"
         tools:text="@string/progress_answers" />
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/tv_right_answers_percent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="18dp"
         android:layout_marginEnd="36dp"
-        android:layout_marginBottom="36dp"
-        android:max="100"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_answers_progress" />
+        android:layout_marginBottom="9dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_answers_progress"
+        app:layout_constraintVertical_chainStyle="spread"
+        tools:text="@string/percent_right_answers" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
