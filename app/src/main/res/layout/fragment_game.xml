@@ -5,219 +5,243 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".presentation.fragments.GameFragment">
 
-    <TextView
-        android:id="@+id/tv_timer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="36dp"
-        android:gravity="center"
-        android:textColor="@color/eco_contour_turquoise"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="00:00" />
-
-    <TextView
-        android:id="@+id/tv_count_questions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="36dp"
-        android:gravity="center"
-        android:textColor="@color/eco_contour_turquoise"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_timer"
-        tools:text="0" />
-
-    <TextView
-        android:id="@+id/tv_trash_item"
-        style="@style/TrashItemTextStyle"
-        android:layout_width="160dp"
-        android:layout_height="80dp"
-        android:layout_margin="36dp"
-        android:background="@color/eco_contour_turquoise"
-        android:text="@string/trash_item_name_example"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_count_questions"
-        app:layout_constraintVertical_chainStyle="packed"
-        tools:text="@string/trash_item_name_example" />
-
-
-    <LinearLayout
-        android:id="@+id/container_option1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="36dp"
-        android:background="@color/eco_accent_pink"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toStartOf="@+id/container_option2"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_trash_item"
-        android:tag="PLASTIC">
-
-        <ImageView
-            android:id="@+id/iv_option1"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/eco_accent_pink"
-            android:padding="12dp"
-            android:src="@drawable/plastic" />
-
-        <TextView
-            android:id="@+id/btn_option1"
-            style="@style/LevelTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/plastic"
-            android:textColor="@color/black" />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/container_option2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="24dp"
-        android:background="@color/eco_planet_blue"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toEndOf="@+id/container_option1"
-        app:layout_constraintTop_toBottomOf="@+id/tv_trash_item"
-        android:tag="PAPER">
-
-        <ImageView
-            android:id="@+id/iv_option2"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/eco_planet_blue"
-            android:padding="12dp"
-            android:src="@drawable/paper" />
-
-        <TextView
-            android:id="@+id/btn_option2"
-            style="@style/LevelTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/paper"
-            android:textColor="@color/black" />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/container_option3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="36dp"
-        android:background="@color/eco_planet_green"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toStartOf="@id/container_option4"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/container_option1"
-        android:tag="ORGANIC">
-
-        <ImageView
-            android:id="@+id/iv_option3"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/eco_planet_green"
-            android:padding="12dp"
-            android:src="@drawable/organic" />
-
-        <TextView
-            android:id="@+id/btn_option3"
-            style="@style/LevelTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/organic"
-            android:textColor="@color/black" />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/container_option4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="36dp"
-        android:background="@color/eco_blush_pink"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toEndOf="@id/container_option3"
-        app:layout_constraintTop_toBottomOf="@+id/container_option2"
-        android:tag="GLASS">
-
-        <ImageView
-            android:id="@+id/iv_option4"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/eco_blush_pink"
-            android:padding="12dp"
-            android:src="@drawable/glass" />
-
-        <TextView
-            android:id="@+id/btn_option4"
-            style="@style/LevelTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/glass"
-            android:textColor="@color/black" />
-    </LinearLayout>
-
-
-
-    <TextView
-        android:id="@+id/tv_answers_progress"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginBottom="9dp"
-        app:layout_constraintBottom_toTopOf="@id/tv_right_answers_percent"
-        app:layout_constraintTop_toBottomOf="@id/container_option4"
-        app:layout_constraintVertical_chainStyle="spread"
-        android:textSize="16sp"
-        tools:text="@string/progress_answers" />
+        android:background="@android:color/background_light"
+        tools:context=".presentation.fragments.GameFragment">
 
-    <TextView
-        android:id="@+id/tv_right_answers_percent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="9dp"
-        android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/tv_answers_progress"
-        app:layout_constraintVertical_chainStyle="spread"
-        tools:text="@string/percent_right_answers" />
+        <TextView
+            android:id="@+id/tv_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="36dp"
+            android:gravity="center"
+            android:textColor="@color/eco_contour_turquoise"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="00:00" />
+
+        <TextView
+            android:id="@+id/tv_count_questions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="36dp"
+            android:gravity="center"
+            android:textColor="@color/eco_contour_turquoise"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_timer"
+            tools:text="0" />
+
+        <TextView
+            android:id="@+id/tv_trash_item"
+            android:layout_width="220dp"
+            android:layout_height="90dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/bg_trash_item"
+            android:elevation="6dp"
+            android:gravity="center"
+            android:padding="16dp"
+            android:textColor="@color/eco_dark_contour"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_count_questions"
+            tools:text="Пластиковая бутылка" />
 
 
+        <LinearLayout
+            android:id="@+id/container_option1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_option_card"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:tag="PLASTIC"
+            app:layout_constraintEnd_toStartOf="@+id/container_option2"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_trash_item">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/iv_option1"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:background="@color/eco_accent_pink"
+                android:backgroundTint="@color/eco_accent_pink"
+                android:padding="16dp"
+                android:src="@drawable/plastic"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
+
+            <TextView
+                android:id="@+id/btn_option1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/plastic"
+                android:textColor="@color/eco_dark_contour"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/container_option2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/bg_option_card"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:tag="PAPER"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toEndOf="@+id/container_option1"
+            app:layout_constraintTop_toBottomOf="@+id/tv_trash_item">
+
+            <ImageView
+                android:id="@+id/iv_option2"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:background="@color/eco_planet_blue"
+                android:padding="16dp"
+                android:src="@drawable/paper"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
+
+            <TextView
+                android:id="@+id/btn_option2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/paper"
+                android:textColor="@color/eco_dark_contour"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/container_option3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_option_card"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:tag="ORGANIC"
+            app:layout_constraintEnd_toStartOf="@id/container_option4"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/container_option1">
+
+            <ImageView
+                android:id="@+id/iv_option3"
+
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:background="@color/eco_planet_green"
+                android:padding="16dp"
+                android:src="@drawable/organic"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
+
+            <TextView
+                android:id="@+id/btn_option3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/organic"
+                android:textColor="@color/eco_dark_contour"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/container_option4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_option_card"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:tag="GLASS"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toEndOf="@id/container_option3"
+            app:layout_constraintTop_toBottomOf="@+id/container_option2">
+
+            <ImageView
+                android:id="@+id/iv_option4"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:background="@color/eco_blush_pink"
+                android:padding="16dp"
+                android:src="@drawable/glass"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
+
+            <TextView
+                android:id="@+id/btn_option4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/glass"
+                android:textColor="@color/eco_dark_contour"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_answers_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="9dp"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/tv_right_answers_percent"
+            app:layout_constraintTop_toBottomOf="@id/container_option4"
+            app:layout_constraintVertical_chainStyle="spread"
+            tools:text="@string/progress_answers" />
+
+        <TextView
+            android:id="@+id/tv_right_answers_percent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginBottom="9dp"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_answers_progress"
+            app:layout_constraintVertical_chainStyle="spread"
+            tools:text="@string/percent_right_answers" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

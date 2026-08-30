@@ -1,5 +1,7 @@
 package com.example.ecosorter.presentation.fragments
 
+import android.graphics.Canvas
+import android.graphics.Point
 import android.os.Bundle
 import android.view.DragEvent
 import android.view.LayoutInflater
@@ -18,6 +20,16 @@ import com.example.ecosorter.presentation.viewmodels.GameFragmentViewModel
 import com.example.ecosorter.presentation.viewmodels.GameFragmentViewModelFactory
 
 class GameFragment : Fragment() {
+
+    class FullyOpaqueShadowBuilder(view: View) : View.DragShadowBuilder(view) {
+        override fun onProvideShadowMetrics(shadowSize: Point, shadowTouchPoint: Point) {
+            super.onProvideShadowMetrics(shadowSize, shadowTouchPoint)
+            shadowTouchPoint.set(shadowSize.x / 2, shadowSize.y / 2)
+        }
+        override fun onDrawShadow(canvas: Canvas) {
+            view.draw(canvas)
+        }
+    }
     private val args by navArgs<GameFragmentArgs>()
 
     private val viewModelFactory by lazy {
@@ -94,7 +106,7 @@ class GameFragment : Fragment() {
 
     private fun setupDragAndDrop() {
         binding.tvTrashItem.setOnLongClickListener { view ->
-            val shadowBuilder = View.DragShadowBuilder(view)
+            val shadowBuilder = FullyOpaqueShadowBuilder(view)
             view.startDragAndDrop(null, shadowBuilder, view, 0)
             true
         }
