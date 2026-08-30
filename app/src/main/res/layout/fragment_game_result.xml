@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/background_light"
+        tools:context=".presentation.fragments.GameResultFragment">
+
+        <ImageView
+            android:id="@+id/emoji_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            android:foregroundGravity="center"
+            android:src="@drawable/clean_planet"
+            app:layout_constraintBottom_toTopOf="@id/tv_game_result"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread"
+            tools:srcCompat="@drawable/clean_planet" />
+
+        <TextView
+            android:id="@+id/tv_game_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="center"
+            android:textColor="@color/eco_planet_green"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tv_answers_progress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emoji_result"
+            app:layout_constraintVertical_chainStyle="spread"
+            tools:text="Вы выиграли!" />
+
+        <TextView
+            android:id="@+id/tv_answers_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="9dp"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/tv_right_answers_percent"
+            app:layout_constraintTop_toBottomOf="@id/tv_game_result"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_chainStyle="spread"
+            tools:text="@string/progress_answers" />
+
+        <TextView
+            android:id="@+id/tv_right_answers_percent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginBottom="9dp"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_answers_progress"
+            app:layout_constraintVertical_chainStyle="spread"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="@string/percent_right_answers" />
+
+        <Button
+            android:id="@+id/button_retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/game_again"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:backgroundTint="@color/eco_contour_turquoise"
+            app:layout_constraintTop_toBottomOf="@+id/tv_right_answers_percent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

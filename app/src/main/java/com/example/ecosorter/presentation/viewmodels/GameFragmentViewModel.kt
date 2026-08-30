@@ -143,6 +143,7 @@ class GameFragmentViewModel(val application: Application, val level: Level) : Vi
     }
 
     override fun onCleared() {
+        super.onCleared()
         timer.cancel()
     }
 }

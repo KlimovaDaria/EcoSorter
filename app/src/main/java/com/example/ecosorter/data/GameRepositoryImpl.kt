@@ -31,8 +31,8 @@ class GameRepositoryImpl : GameRepository {
         )
     }
 
-    private fun getPercentOfRightAnswers(countOfRightAnswers: Int, countOfQuestions: Int): Double {
-        return (countOfRightAnswers / countOfQuestions.toDouble()) * 100
+    private fun getPercentOfRightAnswers(countOfRightAnswers: Int, countOfQuestions: Int): Int {
+        return ((countOfRightAnswers / countOfQuestions.toDouble()) * 100).toInt()
     }
 
     private companion object {

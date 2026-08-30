@@ -17,4 +17,9 @@
     <string name="organic">ОРГАНИКА</string>
     <string name="glass">СТЕКЛО</string>
     <string name="percent_right_answers">Процент правильных ответов %d (минимум %d)</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="game_again">Сыграть снова</string>
+    <string name="you_are_win">Вы выиграли!</string>
+    <string name="you_are_lose">Вы проиграли</string>
 </resources>

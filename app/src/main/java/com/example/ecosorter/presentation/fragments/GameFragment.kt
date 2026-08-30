@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.ecosorter.databinding.FragmentGameBinding
 import com.example.ecosorter.domain.entity.GameResult
@@ -139,7 +140,7 @@ class GameFragment : Fragment() {
     }
 
     private fun launchGameFinishedFragment(gameResult: GameResult){
-
+        findNavController().navigate(GameFragmentDirections.actionGameFragmentToGameResultFragment(gameResult))
     }
 
     companion object {
