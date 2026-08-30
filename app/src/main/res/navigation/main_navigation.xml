@@ -23,7 +23,9 @@
             app:argType="com.example.ecosorter.domain.entity.Level" />
         <action
             android:id="@+id/action_gameFragment_to_gameResultFragment"
-            app:destination="@id/gameResultFragment" />
+            app:destination="@id/gameResultFragment"
+        app:popUpTo="@id/gameFragment"
+        app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/gameResultFragment"
