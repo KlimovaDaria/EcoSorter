@@ -47,10 +47,13 @@ class GameFragmentViewModel(val application: Application, val level: Level) : Vi
     val gameResult: LiveData<GameResult>
         get() = _gameResult
 
-    private val _percentOfRightAnswers = MutableLiveData<String>()
-    val percentOfRightAnswers: LiveData<String>
-        get() = _percentOfRightAnswers
+    private val _percentOfRightAnswersStr = MutableLiveData<String>()
+    val percentOfRightAnswersStr: LiveData<String>
+        get() = _percentOfRightAnswersStr
 
+    private val _percentOfRightAnswers = MutableLiveData<Int>()
+    val percentOfRightAnswers: LiveData<Int>
+        get() = _percentOfRightAnswers
 
     init {
         startGame()
@@ -128,13 +131,17 @@ class GameFragmentViewModel(val application: Application, val level: Level) : Vi
 
     private fun updateCountQuestions() {
         questions++
-        _countOfQuestions.value = questions.toString()
+        _countOfQuestions.value = String.format(
+            application.resources.getString(R.string.item_number),
+            questions
+        )
         val percent = calcPercentOfRightAnswers()
-        _percentOfRightAnswers.value = String.format(
+        _percentOfRightAnswersStr.value = String.format(
             application.resources.getString(R.string.percent_right_answers),
             percent,
             level.minPercentOfRightAnswers
         )
+        _percentOfRightAnswers.value = percent
     }
 
     private fun calcPercentOfRightAnswers(): Int {
@@ -143,7 +150,6 @@ class GameFragmentViewModel(val application: Application, val level: Level) : Vi
     }
 
     override fun onCleared() {
-        super.onCleared()
         timer.cancel()
     }
 }

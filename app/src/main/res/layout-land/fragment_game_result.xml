@@ -10,52 +10,55 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/background_light"
+        android:paddingBottom="24dp"
         tools:context=".presentation.fragments.GameResultFragment">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_result_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.4" />
 
         <ImageView
             android:id="@+id/emoji_result"
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            android:layout_marginTop="48dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="32dp"
             android:padding="8dp"
             android:src="@drawable/clean_planet"
-            app:layout_constraintBottom_toTopOf="@id/tv_game_result"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline_result_center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
             tools:srcCompat="@drawable/clean_planet" />
 
         <TextView
             android:id="@+id/tv_game_result"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
-            android:gravity="center"
+            android:gravity="start"
             android:textColor="@color/eco_planet_green"
-            android:textSize="32sp"
+            android:textSize="28sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/card_stats"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emoji_result"
+            app:layout_constraintStart_toEndOf="@id/guideline_result_center"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Вы выиграли!" />
-
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_stats"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
             app:cardBackgroundColor="@android:color/white"
             app:cardCornerRadius="16dp"
             app:cardElevation="4dp"
-            app:layout_constraintBottom_toTopOf="@id/button_retry"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline_result_center"
             app:layout_constraintTop_toBottomOf="@id/tv_game_result"
             app:strokeColor="#E0E0E0"
             app:strokeWidth="1dp">
@@ -64,25 +67,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp">
-
+                android:padding="16dp">
 
                 <TextView
                     android:id="@+id/tv_answers_progress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/eco_dark_contour"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
                     tools:text="Правильных ответов: 8 из 10" />
-
 
                 <TextView
                     android:id="@+id/tv_right_answers_percent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="8dp"
                     android:textColor="@color/eco_dark_contour"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
                     tools:text="Процент правильных ответов: 80%" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -90,18 +91,17 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_retry"
             android:layout_width="wrap_content"
-            android:layout_height="56dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="40dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
             android:backgroundTint="@color/eco_contour_turquoise"
             android:text="@string/game_again"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold"
-            app:cornerRadius="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:cornerRadius="12dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline_result_center"
             app:layout_constraintTop_toBottomOf="@+id/card_stats" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

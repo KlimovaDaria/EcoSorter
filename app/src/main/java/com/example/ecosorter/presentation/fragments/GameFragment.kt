@@ -90,8 +90,11 @@ class GameFragment : Fragment() {
         gameFragmentViewModel.countOfQuestions.observe(viewLifecycleOwner){
             setCountQuestionsText(it)
         }
-        gameFragmentViewModel.percentOfRightAnswers.observe(viewLifecycleOwner){
+        gameFragmentViewModel.percentOfRightAnswersStr.observe(viewLifecycleOwner){
             binding.tvRightAnswersPercent.text = it
+        }
+        gameFragmentViewModel.percentOfRightAnswers.observe(viewLifecycleOwner) { percent ->
+            binding.progressBar.setProgress(percent, true)
         }
     }
 
