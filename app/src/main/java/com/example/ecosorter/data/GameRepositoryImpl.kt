@@ -1,6 +1,7 @@
 package com.example.ecosorter.data
 
 import android.content.Context
+import androidx.core.content.edit
 import com.example.ecosorter.domain.entity.GameResult
 import com.example.ecosorter.domain.entity.Level
 import com.example.ecosorter.domain.entity.Question
@@ -32,19 +33,25 @@ class GameRepositoryImpl(private val context: Context) : GameRepository {
         )
     }
 
-    override fun getHighScoreForCurrentLevel(levelName: String): Int {
-        val sharedPrefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        return sharedPrefs.getInt(levelName, 0)
+    override fun checkAndSaveHighScore(levelName: String, score: Int): Int {
+        val sharedPrefs = context.getSharedPreferences(PREFS_NAME,
+            Context.MODE_PRIVATE)
+        val currentHighScore = sharedPrefs.getInt(levelName, 0)
+        val highScore = currentHighScore.coerceAtLeast(score)
+        sharedPrefs.edit {
+                putInt(levelName, highScore)
+            }
+        return highScore
     }
 
     private fun getPercentOfRightAnswers(countOfRightAnswers: Int, countOfQuestions: Int): Int {
         return ((countOfRightAnswers / countOfQuestions.toDouble()) * 100).toInt()
     }
 
-    companion object {
+    private companion object {
 
         const val PREFS_NAME = "eco_sorter_high_scores"
-        private val TRASH_MAP = mapOf(
+        val TRASH_MAP = mapOf(
             // === ПЛАСТИК (25 предметов) ===
             "Пластиковая бутылка из-под воды" to TrashCategory.PLASTIC,
             "Одноразовый пластиковый стаканчик" to TrashCategory.PLASTIC,
@@ -154,7 +161,6 @@ class GameRepositoryImpl(private val context: Context) : GameRepository {
             "Стеклянная банка из-под кофе" to TrashCategory.GLASS
         )
     }
-
-    private val trashItemsList = TRASH_MAP.entries.map { TrashItem(it.key, it.value) }
+    val trashItemsList = TRASH_MAP.entries.map { TrashItem(it.key, it.value) }
 
 }
