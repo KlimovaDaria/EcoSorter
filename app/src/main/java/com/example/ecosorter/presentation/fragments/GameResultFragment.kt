@@ -5,16 +5,28 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.ecosorter.R
 import androidx.navigation.fragment.navArgs
 import com.example.ecosorter.databinding.FragmentGameResultBinding
 import com.example.ecosorter.domain.entity.GameResult
+import com.example.ecosorter.presentation.viewmodels.GameResultFragmentViewModel
+import com.example.ecosorter.presentation.viewmodels.GameResultFragmentViewModelFactory
+import kotlin.jvm.java
 
 
 class GameResultFragment : Fragment() {
 
     private val args by navArgs<GameResultFragmentArgs>()
+
+    private val viewModelFactory by lazy {
+        GameResultFragmentViewModelFactory(requireActivity().application, args.gameResult)
+    }
+
+    private val gameResultFragmentViewModel by lazy {
+        ViewModelProvider(this, viewModelFactory)[GameResultFragmentViewModel::class.java]
+    }
 
     private var _binding: FragmentGameResultBinding? = null
     private val binding: FragmentGameResultBinding
@@ -33,6 +45,12 @@ class GameResultFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         gameResult = args.gameResult
+        gameResultFragmentViewModel.highScore.observe(viewLifecycleOwner){
+            binding.tvHighScore.text = String.format(
+                getString(R.string.high_score),
+                it
+            )
+        }
         setViews()
         setOnClickListeners()
     }

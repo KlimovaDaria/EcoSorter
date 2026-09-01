@@ -3,10 +3,10 @@ package com.example.ecosorter.presentation.viewmodels
 import android.annotation.SuppressLint
 import android.app.Application
 import android.os.CountDownTimer
-import com.example.ecosorter.R
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.ecosorter.R
 import com.example.ecosorter.data.GameRepositoryImpl
 import com.example.ecosorter.domain.entity.GameResult
 import com.example.ecosorter.domain.entity.Level
@@ -20,11 +20,12 @@ private const val MILLIS_IN_SECOND = 1000L
 private const val SECONDS_IN_MINUTE = 60
 
 class GameFragmentViewModel(val application: Application, val level: Level) : ViewModel() {
-    private val repository = GameRepositoryImpl()
+    private val repository = GameRepositoryImpl(application)
     private val timeInSec = level.gameTimeInSeconds
     private lateinit var timer: CountDownTimer
     private val getQuestionUseCase = GetQuestionUseCase(repository)
     private val getGameResultUseCase = GetGameResultUseCase(repository)
+
 
     private var questions = 0
     private var rightAnswers = 0
@@ -54,6 +55,7 @@ class GameFragmentViewModel(val application: Application, val level: Level) : Vi
     private val _percentOfRightAnswers = MutableLiveData<Int>()
     val percentOfRightAnswers: LiveData<Int>
         get() = _percentOfRightAnswers
+
 
     init {
         startGame()

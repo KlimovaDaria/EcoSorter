@@ -7,4 +7,6 @@ import com.example.ecosorter.domain.entity.Question
 interface GameRepository {
     fun getQuestion(): Question
     fun getGameResult(level: Level, countOfRightAnswers: Int, countOfQuestions: Int): GameResult
+
+    fun getHighScoreForCurrentLevel(levelName: String): Int
 }

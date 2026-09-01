@@ -85,6 +85,15 @@
                     android:textColor="@color/eco_dark_contour"
                     android:textSize="15sp"
                     tools:text="Процент правильных ответов: 80%" />
+
+                <TextView
+                    android:id="@+id/tv_high_score"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:textColor="@color/eco_dark_contour"
+                    android:textSize="16sp"
+                    tools:text="Рекорд: 39" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 

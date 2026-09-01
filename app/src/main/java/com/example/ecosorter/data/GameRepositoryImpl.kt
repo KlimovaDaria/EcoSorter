@@ -1,5 +1,6 @@
 package com.example.ecosorter.data
 
+import android.content.Context
 import com.example.ecosorter.domain.entity.GameResult
 import com.example.ecosorter.domain.entity.Level
 import com.example.ecosorter.domain.entity.Question
@@ -7,7 +8,7 @@ import com.example.ecosorter.domain.entity.TrashCategory
 import com.example.ecosorter.domain.entity.TrashItem
 import com.example.ecosorter.domain.repository.GameRepository
 
-class GameRepositoryImpl : GameRepository {
+class GameRepositoryImpl(private val context: Context) : GameRepository {
     override fun getQuestion(): Question {
         val trashItem = trashItemsList.random()
         val options = TrashCategory.entries.toTypedArray().toList()
@@ -31,12 +32,19 @@ class GameRepositoryImpl : GameRepository {
         )
     }
 
+    override fun getHighScoreForCurrentLevel(levelName: String): Int {
+        val sharedPrefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        return sharedPrefs.getInt(levelName, 0)
+    }
+
     private fun getPercentOfRightAnswers(countOfRightAnswers: Int, countOfQuestions: Int): Int {
         return ((countOfRightAnswers / countOfQuestions.toDouble()) * 100).toInt()
     }
 
-    private companion object {
-        val TRASH_MAP = mapOf(
+    companion object {
+
+        const val PREFS_NAME = "eco_sorter_high_scores"
+        private val TRASH_MAP = mapOf(
             // === ПЛАСТИК (25 предметов) ===
             "Пластиковая бутылка из-под воды" to TrashCategory.PLASTIC,
             "Одноразовый пластиковый стаканчик" to TrashCategory.PLASTIC,
@@ -147,6 +155,6 @@ class GameRepositoryImpl : GameRepository {
         )
     }
 
-    val trashItemsList = TRASH_MAP.entries.map { TrashItem(it.key, it.value) }
+    private val trashItemsList = TRASH_MAP.entries.map { TrashItem(it.key, it.value) }
 
 }
