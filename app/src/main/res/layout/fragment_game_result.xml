@@ -84,6 +84,7 @@
                     android:textColor="@color/eco_dark_contour"
                     android:textSize="16sp"
                     tools:text="Процент правильных ответов: 80%" />
+
                 <TextView
                     android:id="@+id/tv_high_score"
                     android:layout_width="match_parent"
@@ -92,6 +93,25 @@
                     android:textColor="@color/eco_dark_contour"
                     android:textSize="16sp"
                     tools:text="Рекорд: 39" />
+
+                <TextView
+                    android:id="@+id/tv_wrong_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/your_mistakes"
+                    android:textColor="@color/eco_dark_contour"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_wrong_answers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:overScrollMode="never"
+                    tools:listitem="@layout/item_wrong_answer"/>
+
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 

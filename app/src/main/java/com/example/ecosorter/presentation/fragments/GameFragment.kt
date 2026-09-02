@@ -16,6 +16,7 @@ import com.example.ecosorter.databinding.FragmentGameBinding
 import com.example.ecosorter.domain.entity.GameResult
 import com.example.ecosorter.domain.entity.Question
 import com.example.ecosorter.domain.entity.TrashCategory
+import com.example.ecosorter.presentation.helpers.SoundHelper
 import com.example.ecosorter.presentation.viewmodels.GameFragmentViewModel
 import com.example.ecosorter.presentation.viewmodels.GameFragmentViewModelFactory
 
@@ -31,6 +32,8 @@ class GameFragment : Fragment() {
         }
     }
     private val args by navArgs<GameFragmentArgs>()
+
+    private lateinit var soundHelper: SoundHelper
 
     private val viewModelFactory by lazy {
         GameFragmentViewModelFactory(requireActivity().application, args.level)
@@ -65,12 +68,14 @@ class GameFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        soundHelper = SoundHelper(requireContext())
         observeViewModel()
         setupDragAndDrop()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        soundHelper.release()
         _binding = null
     }
 
@@ -132,6 +137,7 @@ class GameFragment : Fragment() {
                         view.animate().scaleX(1.0f).scaleY(1.0f).setDuration(100).start()
                         val categoryStr = view.tag.toString()
                         val categoryEnum = TrashCategory.valueOf(categoryStr)
+                        soundHelper.playDrop()
                         gameFragmentViewModel.chooseAnswer(categoryEnum)
                         true
                     }

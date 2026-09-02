@@ -7,6 +7,7 @@ import com.example.ecosorter.domain.entity.Level
 import com.example.ecosorter.domain.entity.Question
 import com.example.ecosorter.domain.entity.TrashCategory
 import com.example.ecosorter.domain.entity.TrashItem
+import com.example.ecosorter.domain.entity.WrongAnswer
 import com.example.ecosorter.domain.repository.GameRepository
 
 class GameRepositoryImpl(private val context: Context) : GameRepository {
@@ -19,7 +20,8 @@ class GameRepositoryImpl(private val context: Context) : GameRepository {
     override fun getGameResult(
         level: Level,
         countOfRightAnswers: Int,
-        countOfQuestions: Int
+        countOfQuestions: Int,
+        wrongAnswers: List<WrongAnswer>
     ): GameResult {
         val percentOfRightAnswers = getPercentOfRightAnswers(countOfRightAnswers, countOfQuestions)
         val winner = countOfRightAnswers >= level.minCountOfRightAnswers &&
@@ -29,7 +31,8 @@ class GameRepositoryImpl(private val context: Context) : GameRepository {
             countOfRightAnswers,
             countOfQuestions,
             percentOfRightAnswers,
-            level
+            level,
+            wrongAnswers
         )
     }
 

@@ -4,7 +4,5 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class TrashItem(
-    val name: String,
-    val category: TrashCategory
-): Parcelable
+data class WrongAnswer(val trashItem: TrashItem, val wrongCategory: TrashCategory): Parcelable {
+}

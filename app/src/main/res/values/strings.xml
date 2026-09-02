@@ -24,4 +24,7 @@
     <string name="you_are_lose">Вы проиграли</string>
     <string name="item_number">Предмет № %d</string>
     <string name="high_score">Рекорд: %d</string>
+    <string name="your_mistakes">Ваши ошибки в этой игре:</string>
+    <string name="your_choice_for_category">Выбрано: %1$s</string>
+    <string name="right_choice_for_category">Правильно: %1$s</string>
 </resources>

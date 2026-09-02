@@ -12,6 +12,7 @@ import com.example.ecosorter.domain.entity.GameResult
 import com.example.ecosorter.domain.entity.Level
 import com.example.ecosorter.domain.entity.Question
 import com.example.ecosorter.domain.entity.TrashCategory
+import com.example.ecosorter.domain.entity.WrongAnswer
 import com.example.ecosorter.domain.usecase.GetGameResultUseCase
 import com.example.ecosorter.domain.usecase.GetQuestionUseCase
 
@@ -29,6 +30,7 @@ class GameFragmentViewModel(val application: Application, val level: Level) : Vi
 
     private var questions = 0
     private var rightAnswers = 0
+    private val wrongAnswers = mutableListOf<WrongAnswer>()
 
     private val _countOfQuestions = MutableLiveData<String>()
     val countOfQuestions: LiveData<String>
@@ -103,7 +105,8 @@ class GameFragmentViewModel(val application: Application, val level: Level) : Vi
         val gr = getGameResultUseCase(
             level,
             rightAnswers,
-            questions
+            questions,
+            wrongAnswers
         )
         _gameResult.value = gr
     }
@@ -114,9 +117,16 @@ class GameFragmentViewModel(val application: Application, val level: Level) : Vi
     }
 
     private fun checkAnswer(trashCategory: TrashCategory): Boolean {
-        val isRight = question.value?.trashItem?.category == trashCategory
+        val currTrashItem = _question.value?.trashItem
+        val isRight = currTrashItem?.category == trashCategory
         if (isRight) {
             updateCountRightAnswers()
+        }
+        else {
+            currTrashItem?.let {
+                val wrongAnswer = WrongAnswer(it, trashCategory)
+                wrongAnswers.add(wrongAnswer)
+            }
         }
         updateCountQuestions()
         return isRight

@@ -9,8 +9,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.ecosorter.R
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ecosorter.databinding.FragmentGameResultBinding
 import com.example.ecosorter.domain.entity.GameResult
+import com.example.ecosorter.presentation.adapters.WrongAnswersAdapter
 import com.example.ecosorter.presentation.viewmodels.GameResultFragmentViewModel
 import com.example.ecosorter.presentation.viewmodels.GameResultFragmentViewModelFactory
 import kotlin.jvm.java
@@ -76,6 +78,15 @@ class GameResultFragment : Fragment() {
                 gameResult.level.minPercentOfRightAnswers
             )
             emojiResult.setImageResource(getSmileResId())
+            if (gameResult.wrongAnswersList.isEmpty()) {
+                tvWrongTitle.visibility = View.GONE
+                rvWrongAnswers.visibility = View.GONE
+            } else {
+                tvWrongTitle.visibility = View.VISIBLE
+                rvWrongAnswers.visibility = View.VISIBLE
+                rvWrongAnswers.layoutManager = LinearLayoutManager(requireContext())
+                rvWrongAnswers.adapter = WrongAnswersAdapter(gameResult.wrongAnswersList, requireContext())
+            }
         }
     }
 

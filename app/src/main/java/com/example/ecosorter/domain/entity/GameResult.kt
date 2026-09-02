@@ -10,5 +10,6 @@ data class GameResult(
     val countOfRightAnswers: Int,
     val countOfQuestions: Int,
     val percentOfRightAnswers: Int,
-    val level: Level
+    val level: Level,
+    val wrongAnswersList: List<WrongAnswer>
 ): Parcelable
