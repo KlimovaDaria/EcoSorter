@@ -13,8 +13,10 @@ import com.example.ecosorter.domain.entity.Level
 import com.example.ecosorter.domain.entity.Question
 import com.example.ecosorter.domain.entity.TrashCategory
 import com.example.ecosorter.domain.entity.WrongAnswer
+import com.example.ecosorter.domain.usecase.GetCurrentGlobalStreakUseCase
 import com.example.ecosorter.domain.usecase.GetGameResultUseCase
 import com.example.ecosorter.domain.usecase.GetQuestionUseCase
+import com.example.ecosorter.domain.usecase.SaveCurrentGlobalStreakUseCase
 
 private const val MILLIS_IN_SECOND = 1000L
 
@@ -23,10 +25,13 @@ private const val SECONDS_IN_MINUTE = 60
 class GameFragmentViewModel(val application: Application, val level: Level) : ViewModel() {
     private val repository = GameRepositoryImpl(application)
     private val timeInSec = level.gameTimeInSeconds
+
+    private var currentGlobalStreak = 0
     private lateinit var timer: CountDownTimer
     private val getQuestionUseCase = GetQuestionUseCase(repository)
     private val getGameResultUseCase = GetGameResultUseCase(repository)
-
+    private val getCurrentGlobalStreakUseCase = GetCurrentGlobalStreakUseCase(repository)
+    private val saveCurrentGlobalStreakUseCase = SaveCurrentGlobalStreakUseCase(repository)
 
     private var questions = 0
     private var rightAnswers = 0
@@ -50,13 +55,13 @@ class GameFragmentViewModel(val application: Application, val level: Level) : Vi
     val gameResult: LiveData<GameResult>
         get() = _gameResult
 
-    private val _percentOfRightAnswersStr = MutableLiveData<String>()
-    val percentOfRightAnswersStr: LiveData<String>
-        get() = _percentOfRightAnswersStr
-
     private val _percentOfRightAnswers = MutableLiveData<Int>()
     val percentOfRightAnswers: LiveData<Int>
         get() = _percentOfRightAnswers
+
+    private val _globalStreak = MutableLiveData<Int>()
+    val globalStreak: LiveData<Int>
+        get() = _globalStreak
 
 
     init {
@@ -66,6 +71,8 @@ class GameFragmentViewModel(val application: Application, val level: Level) : Vi
     private fun startGame() {
         generateQuestion()
         startTimer()
+        currentGlobalStreak = getCurrentGlobalStreakUseCase(level)
+        updateCurrentGlobalStreak()
     }
 
     private fun generateQuestion() {
@@ -106,7 +113,8 @@ class GameFragmentViewModel(val application: Application, val level: Level) : Vi
             level,
             rightAnswers,
             questions,
-            wrongAnswers
+            wrongAnswers,
+            currentGlobalStreak
         )
         _gameResult.value = gr
     }
@@ -121,21 +129,35 @@ class GameFragmentViewModel(val application: Application, val level: Level) : Vi
         val isRight = currTrashItem?.category == trashCategory
         if (isRight) {
             updateCountRightAnswers()
+            updateCurrentGlobalStreak()
         }
         else {
             currTrashItem?.let {
                 val wrongAnswer = WrongAnswer(it, trashCategory)
                 wrongAnswers.add(wrongAnswer)
             }
+            resetCurrentGlobalStreak()
         }
         updateCountQuestions()
         return isRight
     }
 
+    private fun resetCurrentGlobalStreak() {
+        currentGlobalStreak = 0
+        _globalStreak.value = currentGlobalStreak
+        saveCurrentGlobalStreakUseCase(level, currentGlobalStreak)
+    }
+
+    private fun updateCurrentGlobalStreak() {
+        currentGlobalStreak++
+        _globalStreak.value = currentGlobalStreak
+        saveCurrentGlobalStreakUseCase(level, currentGlobalStreak)
+    }
+
     private fun updateCountRightAnswers() {
         rightAnswers++
         _progressAnswers.value = String.format(
-            application.resources.getString(R.string.progress_answers),
+            application.resources.getString(R.string.progress_answers_game),
             rightAnswers,
             level.minCountOfRightAnswers
         )
@@ -144,15 +166,10 @@ class GameFragmentViewModel(val application: Application, val level: Level) : Vi
     private fun updateCountQuestions() {
         questions++
         _countOfQuestions.value = String.format(
-            application.resources.getString(R.string.item_number),
+            application.resources.getString(R.string.question_number),
             questions
         )
         val percent = calcPercentOfRightAnswers()
-        _percentOfRightAnswersStr.value = String.format(
-            application.resources.getString(R.string.percent_right_answers),
-            percent,
-            level.minPercentOfRightAnswers
-        )
         _percentOfRightAnswers.value = percent
     }
 

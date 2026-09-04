@@ -21,7 +21,8 @@ class GameRepositoryImpl(private val context: Context) : GameRepository {
         level: Level,
         countOfRightAnswers: Int,
         countOfQuestions: Int,
-        wrongAnswers: List<WrongAnswer>
+        wrongAnswers: List<WrongAnswer>,
+        currentGlobalStreak: Int
     ): GameResult {
         val percentOfRightAnswers = getPercentOfRightAnswers(countOfRightAnswers, countOfQuestions)
         val winner = countOfRightAnswers >= level.minCountOfRightAnswers &&
@@ -32,7 +33,8 @@ class GameRepositoryImpl(private val context: Context) : GameRepository {
             countOfQuestions,
             percentOfRightAnswers,
             level,
-            wrongAnswers
+            wrongAnswers,
+            currentGlobalStreak
         )
     }
 
@@ -47,6 +49,20 @@ class GameRepositoryImpl(private val context: Context) : GameRepository {
         return highScore
     }
 
+    override fun getCurrentGlobalStreak(level: Level): Int {
+        val sharedPrefs = context.getSharedPreferences(PREFS_CURRENT_STREAK,
+            Context.MODE_PRIVATE)
+        return sharedPrefs.getInt(level.name, 0)
+    }
+
+    override fun saveCurrentGlobalStreak(level: Level, currentStreak: Int) {
+        val sharedPrefs = context.getSharedPreferences(PREFS_CURRENT_STREAK,
+            Context.MODE_PRIVATE)
+        sharedPrefs.edit {
+            putInt(level.name, currentStreak)
+        }
+    }
+
     private fun getPercentOfRightAnswers(countOfRightAnswers: Int, countOfQuestions: Int): Int {
         return ((countOfRightAnswers / countOfQuestions.toDouble()) * 100).toInt()
     }
@@ -54,6 +70,7 @@ class GameRepositoryImpl(private val context: Context) : GameRepository {
     private companion object {
 
         const val PREFS_NAME = "eco_sorter_high_scores"
+        const val PREFS_CURRENT_STREAK = "eco_sorter_current_streak"
         val TRASH_MAP = mapOf(
             // === ПЛАСТИК (25 предметов) ===
             "Пластиковая бутылка из-под воды" to TrashCategory.PLASTIC,

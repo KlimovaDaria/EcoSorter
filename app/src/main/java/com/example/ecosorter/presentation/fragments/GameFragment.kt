@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.ecosorter.R
 import com.example.ecosorter.databinding.FragmentGameBinding
 import com.example.ecosorter.domain.entity.GameResult
 import com.example.ecosorter.domain.entity.Question
@@ -27,10 +28,12 @@ class GameFragment : Fragment() {
             super.onProvideShadowMetrics(shadowSize, shadowTouchPoint)
             shadowTouchPoint.set(shadowSize.x / 2, shadowSize.y / 2)
         }
+
         override fun onDrawShadow(canvas: Canvas) {
             view.draw(canvas)
         }
     }
+
     private val args by navArgs<GameFragmentArgs>()
 
     private lateinit var soundHelper: SoundHelper
@@ -86,31 +89,45 @@ class GameFragment : Fragment() {
         gameFragmentViewModel.timerStr.observe(viewLifecycleOwner) {
             setTimer(it)
         }
-        gameFragmentViewModel.gameResult.observe(viewLifecycleOwner){
+        gameFragmentViewModel.gameResult.observe(viewLifecycleOwner) {
             launchGameFinishedFragment(it)
         }
-        gameFragmentViewModel.progressAnswers.observe(viewLifecycleOwner){
-            setAnswersProgressText(it)
-        }
-        gameFragmentViewModel.countOfQuestions.observe(viewLifecycleOwner){
+        gameFragmentViewModel.countOfQuestions.observe(viewLifecycleOwner) {
             setCountQuestionsText(it)
         }
-        gameFragmentViewModel.percentOfRightAnswersStr.observe(viewLifecycleOwner){
-            binding.tvRightAnswersPercent.text = it
+        gameFragmentViewModel.percentOfRightAnswers.observe(viewLifecycleOwner) {
+            setProgressBarForRightAnswers(it)
         }
-        gameFragmentViewModel.percentOfRightAnswers.observe(viewLifecycleOwner) { percent ->
-            binding.progressBar.setProgress(percent, true)
+        gameFragmentViewModel.globalStreak.observe(viewLifecycleOwner) {
+            setCountCurrentStreak(it)
         }
+        gameFragmentViewModel.progressAnswers.observe(viewLifecycleOwner){
+            binding.tvAnswersProgress.text = it
+        }
+    }
+
+    private fun setCountCurrentStreak(i: Int?) {
+        binding.tvCountCurrentStreak.text = getString(
+            R.string.current_global_streak,
+            i
+        )
+    }
+
+    private fun setProgressBarForRightAnswers(i: Int) {
+        binding.progressBar.setProgress(i, true)
+        binding.tvRightAnswersPercent.text = getString(
+            R.string.success_progress_bar,
+            i
+        )
+        binding.tvTargetPercentLabel.text = getString(
+            R.string.target_progress_bar,
+            gameFragmentViewModel.level.minPercentOfRightAnswers
+        )
     }
 
     private fun setCountQuestionsText(string: String?) {
         binding.tvCountQuestions.text = string
     }
-
-    private fun setAnswersProgressText(string: String?) {
-        binding.tvAnswersProgress.text = string
-    }
-
 
     private fun setupDragAndDrop() {
         binding.tvTrashItem.setOnLongClickListener { view ->
@@ -146,6 +163,7 @@ class GameFragment : Fragment() {
                         view.animate().scaleX(1.0f).scaleY(1.0f).setDuration(100).start()
                         true
                     }
+
                     else -> false
                 }
             }
@@ -160,11 +178,12 @@ class GameFragment : Fragment() {
         binding.tvTimer.text = timerStr
     }
 
-    private fun launchGameFinishedFragment(gameResult: GameResult){
-        findNavController().navigate(GameFragmentDirections.actionGameFragmentToGameResultFragment(gameResult))
+    private fun launchGameFinishedFragment(gameResult: GameResult) {
+        findNavController().navigate(
+            GameFragmentDirections.actionGameFragmentToGameResultFragment(
+                gameResult
+            )
+        )
     }
 
-    companion object {
-
-    }
 }

@@ -5,26 +5,30 @@
         (например, пластиковая бутылка, огрызок яблока или старая газета),
         и 4 мусорных контейнера внизу: ПЛАСТИК, БУМАГА, ОРГАНИКА и СТЕКЛО.\n\n
         Ваша задача — за отведенное время правильно определить категорию предмета и отправить его в нужный бак.\n\n
-    Пример: на экране появляется «Банановая кожура». Из четырех вариантов баков вам нужно выбрать «ОРГАНИКА». Если вы нажмете на этот контейнер, ответ засчитается как правильный, на экране появится новый предмет, а шкала очистки планеты продвинется вперед!</string>
+        Пример: на экране появляется «Банановая кожура». Из четырех вариантов баков вам нужно выбрать «ОРГАНИКА».
+        Если вы перенесете мусор в этот контейнер, ответ засчитается как правильный, на экране появится новый предмет,
+        а шкала очистки планеты продвинется вперед!</string>
     <string name="welcome_choose_level_tv">Выберите уровень</string>
     <string name="welcome_easy_level_tv">Легкий</string>
     <string name="welcome_normal_level_tv">Средний</string>
     <string name="welcome_hard_level_tv">Тяжелый</string>
-    <string name="progress_answers">Правильных ответов: %d из %d (минимум)</string>
-    <string name="trash_item_name_example">Банановая кожура</string>
+    <string name="progress_answers">Правильных ответов: %d (необходимо %d )</string>
+    <string name="progress_answers_game">Ответы: %d / %d</string>
     <string name="plastic">ПЛАСТИК</string>
     <string name="paper">БУМАГА</string>
     <string name="organic">ОРГАНИКА</string>
     <string name="glass">СТЕКЛО</string>
-    <string name="percent_right_answers">Текущий процент: %d  (необходимо %d )</string>
+    <string name="percent_right_answers">Текущий процент: %d (необходимо %d )</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="game_again">Сыграть снова</string>
     <string name="you_are_win">Вы выиграли!</string>
     <string name="you_are_lose">Вы проиграли</string>
-    <string name="item_number">Предмет № %d</string>
+    <string name="question_number">Вопрос № %d</string>
     <string name="high_score">Рекорд: %d</string>
     <string name="your_mistakes">Ваши ошибки в этой игре:</string>
-    <string name="your_choice_for_category">Выбрано: %1$s</string>
-    <string name="right_choice_for_category">Правильно: %1$s</string>
+    <string name="your_choice_for_category">Ваш выбор: %1$s</string>
+    <string name="right_choice_for_category">Надо: %1$s</string>
+    <string name="current_global_streak">Серия: %d</string>
+    <string name="success_progress_bar">Успех: %d</string>
+    <string name="target_progress_bar">Цель: %d</string>
 </resources>

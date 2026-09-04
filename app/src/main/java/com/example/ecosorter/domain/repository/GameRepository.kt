@@ -11,8 +11,13 @@ interface GameRepository {
         level: Level,
         countOfRightAnswers: Int,
         countOfQuestions: Int,
-        wrongAnswers: List<WrongAnswer>
+        wrongAnswers: List<WrongAnswer>,
+        currentGlobalStreak: Int
     ): GameResult
 
     fun checkAndSaveHighScore(levelName: String, score: Int): Int
+
+    fun getCurrentGlobalStreak(level: Level): Int
+
+    fun saveCurrentGlobalStreak(level: Level, currentStreak: Int)
 }

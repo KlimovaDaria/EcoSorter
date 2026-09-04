@@ -115,14 +115,14 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/button_retry"
             android:layout_width="wrap_content"
             android:layout_height="56dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="24dp"
-            android:backgroundTint="@color/eco_contour_turquoise"
+            android:backgroundTint="@color/eco_planet_green"
             android:text="@string/game_again"
             android:textSize="16sp"
             android:textStyle="bold"

@@ -9,10 +9,12 @@ class GetGameResultUseCase(private val repository: GameRepository) {
     operator fun invoke(level: Level,
                         countOfRightAnswers: Int,
                         countOfQuestions: Int,
-                        wrongAnswers: List<WrongAnswer>): GameResult{
+                        wrongAnswers: List<WrongAnswer>,
+                        currentGlobalStreak: Int): GameResult{
         return repository.getGameResult(level,
             countOfRightAnswers,
             countOfQuestions,
-            wrongAnswers)
+            wrongAnswers,
+            currentGlobalStreak)
     }
 }

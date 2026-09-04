@@ -1,56 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginHorizontal="12dp"
     android:layout_marginVertical="6dp"
-    app:cardBackgroundColor="#FFF8F8"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="0dp"
-    app:strokeColor="#FFCDD2"
+    app:cardBackgroundColor="#FCFDFD"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp"
+    app:strokeColor="#F0F4F5"
     app:strokeWidth="1dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="12dp">
+        android:padding="16dp">
 
+        <!-- Название предмета мусора -->
         <TextView
             android:id="@+id/tv_wrong_item_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/eco_accent_pink"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/eco_dark_contour"
             android:textSize="16sp"
             android:textStyle="bold"
             tools:text="Пластиковая бутылка" />
 
+        <!-- Горизонтальный контейнер для современных бейджей -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
 
-            <TextView
-                android:id="@+id/tv_user_choice"
+            <!-- БЕЙДЖ: Ошибка пользователя (Слева) -->
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
                 android:layout_weight="1"
-                android:textColor="@color/eco_accent_pink"
-                android:textSize="13sp"
-                tools:text="Выбрано: БУМАГА" />
+                android:background="@drawable/bg_streak_capsule"
+                android:backgroundTint="#FFF0F0"
+                android:gravity="center"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="6dp">
 
-            <TextView
-                android:id="@+id/tv_right_choice"
+                <TextView
+                    android:id="@+id/tv_user_choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#D32F2F"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:text="Ваш выбор: Бумага" />
+            </LinearLayout>
+
+            <!-- БЕЙДЖ: Правильный ответ (Справа) -->
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
                 android:layout_weight="1"
-                android:textColor="@color/eco_contour_turquoise"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                tools:text="Правильно: ПЛАСТИК" />
+                android:background="@drawable/bg_timer_capsule"
+                android:backgroundTint="@color/eco_planet_green"
+                android:gravity="center"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="6dp">
+
+                <TextView
+                    android:id="@+id/tv_right_choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="#2E7D32"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:text="Надо: Пластик" />
+            </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

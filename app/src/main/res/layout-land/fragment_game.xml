@@ -20,108 +20,170 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.45" />
 
-        <LinearLayout
-            android:id="@+id/panel_timer"
-            android:layout_width="wrap_content"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_stats"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:background="@drawable/bg_timer_capsule"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingStart="16dp"
-            android:paddingTop="6dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="6dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="#FAFDFD"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
             app:layout_constraintEnd_toStartOf="@id/guideline_center"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="#E0F2F1"
+            app:strokeWidth="1dp">
 
-            <ImageView
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/outline_av_timer_24"
-                app:tint="@color/eco_contour_turquoise" />
-
-            <TextView
-                android:id="@+id/tv_timer"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/eco_dark_contour"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:text="00:60" />
-        </LinearLayout>
+                android:orientation="vertical"
+                android:padding="16dp">
 
-        <TextView
-            android:id="@+id/tv_count_questions"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:alpha="0.7"
-            android:textColor="@color/eco_dark_contour"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@id/guideline_center"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/panel_timer"
-            tools:text="Вопрос № 5" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/game_stats"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/panel_timer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_marginEnd="8dp"
+                            android:contentDescription="Timer"
+                            android:src="@drawable/outline_av_timer_24"
+                            app:tint="@color/eco_contour_turquoise" />
+
+                        <TextView
+                            android:id="@+id/tv_timer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:textColor="@color/eco_contour_turquoise"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            tools:text="00:59" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/panel_streak"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/tv_count_questions"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:textColor="@color/eco_dark_contour"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:alpha="0.8"
+                            tools:text="Вопрос № 5"
+                            android:text="Вопрос № 0"/>
+
+                        <TextView
+                            android:id="@+id/tv_answers_progress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textColor="@color/eco_dark_contour"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            tools:text="Ответы: 3 / 10"
+                            android:text="Ответы: 0 / 0"/>
+
+                        <TextView
+                            android:id="@+id/tv_count_current_streak"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textColor="@color/eco_accent_pink"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            tools:text="Серия: 12" />
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="6dp">
+
+                    <TextView
+                        android:id="@+id/tv_right_answers_percent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/eco_contour_turquoise"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Успех: 45%" />
+
+                    <TextView
+                        android:id="@+id/tv_target_percent_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.6"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/eco_dark_contour"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Цель: 70%" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/progress_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:indicatorColor="@color/eco_contour_turquoise"
+                    app:trackColor="#E0F2F1"
+                    app:trackCornerRadius="4dp"
+                    app:trackThickness="8dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
 
         <TextView
             android:id="@+id/tv_trash_item"
             android:layout_width="180dp"
             android:layout_height="120dp"
-            android:background="@drawable/bg_trash_item"
+            android:background="@drawable/bg_white_card"
             android:elevation="6dp"
             android:gravity="center"
             android:padding="12dp"
-            android:textColor="@color/black"
+            android:textColor="@color/eco_dark_contour"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/tv_answers_progress"
+            app:layout_constraintTop_toBottomOf="@id/card_stats"
             app:layout_constraintEnd_toStartOf="@id/guideline_center"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_count_questions"
+            app:layout_constraintBottom_toBottomOf="parent"
             tools:text="Пластиковая бутылка" />
 
-        <com.google.android.material.progressindicator.LinearProgressIndicator
-            android:id="@+id/progress_bar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="12dp"
-            app:layout_constraintBottom_toTopOf="@id/tv_answers_progress"
-            app:layout_constraintEnd_toStartOf="@id/guideline_center"
-            app:layout_constraintStart_toStartOf="parent"
-            app:trackColor="#E0E0E0"
-            app:trackCornerRadius="4dp"
-            app:trackThickness="6dp" />
 
-        <TextView
-            android:id="@+id/tv_answers_progress"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="8dp"
-            android:textSize="13sp"
-            app:layout_constraintBottom_toTopOf="@id/tv_right_answers_percent"
-            app:layout_constraintEnd_toStartOf="@id/guideline_center"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="@string/progress_answers" />
-
-        <TextView
-            android:id="@+id/tv_right_answers_percent"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="36dp"
-            android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/guideline_center"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="@string/percent_right_answers" />
 
         <LinearLayout
             android:id="@+id/container_option1"
@@ -129,7 +191,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:background="@drawable/bg_option_card"
+            android:background="@drawable/bg_white_card"
             android:elevation="4dp"
             android:gravity="center"
             android:orientation="vertical"
@@ -167,7 +229,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
-            android:background="@drawable/bg_option_card"
+            android:background="@drawable/bg_white_card"
             android:elevation="4dp"
             android:gravity="center"
             android:orientation="vertical"
@@ -205,7 +267,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/bg_option_card"
+            android:background="@drawable/bg_white_card"
             android:elevation="4dp"
             android:gravity="center"
             android:orientation="vertical"
@@ -243,7 +305,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/bg_option_card"
+            android:background="@drawable/bg_white_card"
             android:elevation="4dp"
             android:gravity="center"
             android:orientation="vertical"
