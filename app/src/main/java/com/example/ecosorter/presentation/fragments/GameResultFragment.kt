@@ -47,14 +47,32 @@ class GameResultFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         gameResult = args.gameResult
-        gameResultFragmentViewModel.highScore.observe(viewLifecycleOwner){
-            binding.tvHighScore.text = String.format(
-                getString(R.string.high_score),
-                it
-            )
-        }
+        observeViewModel()
         setViews()
         setOnClickListeners()
+    }
+
+    private fun observeViewModel() {
+        gameResultFragmentViewModel.highScore.observe(viewLifecycleOwner) {
+            setHighScore(it)
+        }
+        gameResultFragmentViewModel.maxGlobalStreak.observe(viewLifecycleOwner) {
+            setMaxStreak(it)
+        }
+    }
+
+    private fun setMaxStreak(i: Int?) {
+        binding.tvMaxStreak.text = String.format(
+            getString(R.string.max_streak),
+            i
+        )
+    }
+
+    private fun setHighScore(i: Int?) {
+        binding.tvHighScore.text = String.format(
+            getString(R.string.high_score),
+            i
+        )
     }
 
     override fun onDestroyView() {
@@ -78,15 +96,20 @@ class GameResultFragment : Fragment() {
                 gameResult.level.minPercentOfRightAnswers
             )
             emojiResult.setImageResource(getSmileResId())
-            if (gameResult.wrongAnswersList.isEmpty()) {
-                tvWrongTitle.visibility = View.GONE
-                rvWrongAnswers.visibility = View.GONE
-            } else {
-                tvWrongTitle.visibility = View.VISIBLE
-                rvWrongAnswers.visibility = View.VISIBLE
-                rvWrongAnswers.layoutManager = LinearLayoutManager(requireContext())
-                rvWrongAnswers.adapter = WrongAnswersAdapter(gameResult.wrongAnswersList, requireContext())
-            }
+            setWrongAnswers()
+        }
+    }
+
+    private fun FragmentGameResultBinding.setWrongAnswers() {
+        if (gameResult.wrongAnswersList.isEmpty()) {
+            tvWrongTitle.visibility = View.GONE
+            rvWrongAnswers.visibility = View.GONE
+        } else {
+            tvWrongTitle.visibility = View.VISIBLE
+            rvWrongAnswers.visibility = View.VISIBLE
+            rvWrongAnswers.layoutManager = LinearLayoutManager(requireContext())
+            rvWrongAnswers.adapter =
+                WrongAnswersAdapter(gameResult.wrongAnswersList, requireContext())
         }
     }
 

@@ -31,4 +31,5 @@
     <string name="current_global_streak">Серия: %d</string>
     <string name="success_progress_bar">Успех: %d</string>
     <string name="target_progress_bar">Цель: %d</string>
+    <string name="max_streak">Максимальная серия: %d</string>
 </resources>

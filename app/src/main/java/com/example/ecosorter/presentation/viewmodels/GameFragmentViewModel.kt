@@ -15,8 +15,10 @@ import com.example.ecosorter.domain.entity.TrashCategory
 import com.example.ecosorter.domain.entity.WrongAnswer
 import com.example.ecosorter.domain.usecase.GetCurrentGlobalStreakUseCase
 import com.example.ecosorter.domain.usecase.GetGameResultUseCase
+import com.example.ecosorter.domain.usecase.GetMaxGlobalStreakUseCase
 import com.example.ecosorter.domain.usecase.GetQuestionUseCase
 import com.example.ecosorter.domain.usecase.SaveCurrentGlobalStreakUseCase
+import com.example.ecosorter.domain.usecase.SaveMaxGlobalStreakUseCase
 
 private const val MILLIS_IN_SECOND = 1000L
 
@@ -27,11 +29,14 @@ class GameFragmentViewModel(val application: Application, val level: Level) : Vi
     private val timeInSec = level.gameTimeInSeconds
 
     private var currentGlobalStreak = 0
+    private var maxGlobalStreak = 0
     private lateinit var timer: CountDownTimer
     private val getQuestionUseCase = GetQuestionUseCase(repository)
     private val getGameResultUseCase = GetGameResultUseCase(repository)
     private val getCurrentGlobalStreakUseCase = GetCurrentGlobalStreakUseCase(repository)
     private val saveCurrentGlobalStreakUseCase = SaveCurrentGlobalStreakUseCase(repository)
+    private val getMaxGlobalStreakUseCase = GetMaxGlobalStreakUseCase(repository)
+    private val saveMaxGlobalStreakUseCase = SaveMaxGlobalStreakUseCase(repository)
 
     private var questions = 0
     private var rightAnswers = 0
@@ -72,6 +77,7 @@ class GameFragmentViewModel(val application: Application, val level: Level) : Vi
         generateQuestion()
         startTimer()
         currentGlobalStreak = getCurrentGlobalStreakUseCase(level)
+        maxGlobalStreak = getMaxGlobalStreakUseCase(level)
         updateCurrentGlobalStreak()
     }
 
@@ -152,6 +158,9 @@ class GameFragmentViewModel(val application: Application, val level: Level) : Vi
         currentGlobalStreak++
         _globalStreak.value = currentGlobalStreak
         saveCurrentGlobalStreakUseCase(level, currentGlobalStreak)
+        if (currentGlobalStreak>maxGlobalStreak){
+            saveMaxGlobalStreakUseCase(level, currentGlobalStreak)
+        }
     }
 
     private fun updateCountRightAnswers() {

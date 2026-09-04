@@ -20,4 +20,7 @@ interface GameRepository {
     fun getCurrentGlobalStreak(level: Level): Int
 
     fun saveCurrentGlobalStreak(level: Level, currentStreak: Int)
+
+    fun getMaxGlobalStreak(level: Level): Int
+    fun saveMaxGlobalStreak(level: Level, maxStreak: Int)
 }

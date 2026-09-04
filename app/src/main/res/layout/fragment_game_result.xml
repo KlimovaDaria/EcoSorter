@@ -95,6 +95,15 @@
                     tools:text="Рекорд: 39" />
 
                 <TextView
+                    android:id="@+id/tv_max_streak"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:textColor="@color/eco_dark_contour"
+                    android:textSize="16sp"
+                    tools:text="Максимальная серия: 83" />
+
+                <TextView
                     android:id="@+id/tv_wrong_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -63,6 +63,23 @@ class GameRepositoryImpl(private val context: Context) : GameRepository {
         }
     }
 
+    override fun getMaxGlobalStreak(level: Level): Int {
+        val sharedPrefs = context.getSharedPreferences(PREFS_MAX_STREAK,
+        Context.MODE_PRIVATE)
+        return sharedPrefs.getInt(level.name, 0)
+    }
+
+    override fun saveMaxGlobalStreak(
+        level: Level,
+        maxStreak: Int
+    ) {
+        val sharedPrefs = context.getSharedPreferences(PREFS_MAX_STREAK,
+            Context.MODE_PRIVATE)
+        sharedPrefs.edit {
+            putInt(level.name, maxStreak)
+        }
+    }
+
     private fun getPercentOfRightAnswers(countOfRightAnswers: Int, countOfQuestions: Int): Int {
         return ((countOfRightAnswers / countOfQuestions.toDouble()) * 100).toInt()
     }
@@ -71,6 +88,7 @@ class GameRepositoryImpl(private val context: Context) : GameRepository {
 
         const val PREFS_NAME = "eco_sorter_high_scores"
         const val PREFS_CURRENT_STREAK = "eco_sorter_current_streak"
+        const val PREFS_MAX_STREAK = "eco_sorter_max_streak"
         val TRASH_MAP = mapOf(
             // === ПЛАСТИК (25 предметов) ===
             "Пластиковая бутылка из-под воды" to TrashCategory.PLASTIC,
