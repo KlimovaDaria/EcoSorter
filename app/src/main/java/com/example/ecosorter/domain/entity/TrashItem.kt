@@ -7,5 +7,5 @@ import kotlinx.parcelize.Parcelize
 data class TrashItem(
     val name: String,
     val category: TrashCategory,
-    val imageResId: Int
+    val imageName: String
 ): Parcelable

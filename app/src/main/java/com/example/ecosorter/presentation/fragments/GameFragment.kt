@@ -133,25 +133,17 @@ class GameFragment : Fragment() {
     private fun setupDragAndDrop() {
         binding.containerTrashItem.setOnLongClickListener { view ->
             val currentQuestion = gameFragmentViewModel.question.value
-
-            // 2. Создаем ImageView прямо в памяти для анимации полета
             val shadowImage = ImageView(requireContext()).apply {
-                // Ставим индивидуальную картинку текущего предмета!
-                setImageResource(currentQuestion?.trashItem?.imageResId ?: R.drawable.paper)
-                layoutParams = ViewGroup.LayoutParams(300, 300) // Задаем аккуратный игровой размер (в пикселях)
+                val imageResId = getDrawableIdByName(currentQuestion?.trashItem?.imageName ?: "")
+                setImageResource(imageResId)
+                layoutParams = ViewGroup.LayoutParams(300, 300)
             }
-
-            // Измеряем габариты картинки, чтобы Android понял её размеры
             shadowImage.measure(
                 View.MeasureSpec.makeMeasureSpec(300, View.MeasureSpec.EXACTLY),
                 View.MeasureSpec.makeMeasureSpec(300, View.MeasureSpec.EXACTLY)
             )
             shadowImage.layout(0, 0, shadowImage.measuredWidth, shadowImage.measuredHeight)
-
-            // 3. Передаем картинку в ваш сочный непрозрачный класс тени с центрированием пальца!
             val shadowBuilder = FullyOpaqueShadowBuilder(shadowImage)
-
-            // Запускаем полет цветного предмета
             view.startDragAndDrop(null, shadowBuilder, view, 0)
             true
         }
@@ -192,7 +184,8 @@ class GameFragment : Fragment() {
 
     private fun setQuestion(question: Question) {
         binding.tvTrashItem.text = question.trashItem.name
-        binding.ivTrashItem.setImageResource(question.trashItem.imageResId)
+        val imageResId = getDrawableIdByName(question.trashItem.imageName)
+        binding.ivTrashItem.setImageResource(imageResId)
     }
 
     private fun setTimer(timerStr: String) {
@@ -204,6 +197,14 @@ class GameFragment : Fragment() {
             GameFragmentDirections.actionGameFragmentToGameResultFragment(
                 gameResult
             )
+        )
+    }
+
+    private fun getDrawableIdByName(imageName: String): Int {
+        return requireContext().resources.getIdentifier(
+            imageName,
+            "drawable",
+            requireContext().packageName
         )
     }
 
