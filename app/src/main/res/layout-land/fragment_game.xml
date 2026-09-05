@@ -165,23 +165,42 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-
-        <TextView
-            android:id="@+id/tv_trash_item"
-            android:layout_width="180dp"
-            android:layout_height="120dp"
+        <LinearLayout
+            android:id="@+id/container_trash_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
             android:background="@drawable/bg_white_card"
-            android:elevation="6dp"
+            android:elevation="4dp"
             android:gravity="center"
-            android:padding="12dp"
-            android:textColor="@color/eco_dark_contour"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:orientation="vertical"
+            android:tag="PLASTIC"
+            app:layout_constraintHorizontal_chainStyle="spread"
+
             app:layout_constraintTop_toBottomOf="@id/card_stats"
             app:layout_constraintEnd_toStartOf="@id/guideline_center"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:text="Пластиковая бутылка" />
+            app:layout_constraintBottom_toBottomOf="parent">
+            <ImageView
+                android:id="@+id/iv_trash_item"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/plastic_water_bottle"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
+
+            <TextView
+                android:id="@+id/tv_trash_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="6dp"
+                android:gravity="center"
+                android:textColor="@color/eco_dark_contour"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Пластиковая бутылка" />
+        </LinearLayout>
+
+
 
 
 
