@@ -183,9 +183,24 @@ class GameFragment : Fragment() {
     }
 
     private fun setQuestion(question: Question) {
+        binding.tvTrashItem.alpha = 0f
+        binding.tvTrashItem.translationY = 40f
+
         binding.tvTrashItem.text = question.trashItem.name
         val imageResId = getDrawableIdByName(question.trashItem.imageName)
         binding.ivTrashItem.setImageResource(imageResId)
+
+        binding.tvTrashItem.animate()
+            .alpha(1.0f)
+            .translationY(0f)
+            .setDuration(350)
+            .start()
+
+        binding.ivTrashItem.animate()
+            .alpha(1.0f)
+            .translationY(0f)
+            .setDuration(350)
+            .start()
     }
 
     private fun setTimer(timerStr: String) {
